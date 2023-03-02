@@ -19,7 +19,7 @@ it('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-it('fileters Robots', () => {
+it('filters Robots', () => {
   const mockProps = {
     onRequestRobots: jest.fn(),
     robots: [],
@@ -52,7 +52,7 @@ it('fileters Robots correctly', () => {
   expect(wrapper.instance().filterRobots()).toEqual(filteredRobots);
 });
 
-it('fileters Robots correctly 2', () => {
+it('filters Robots correctly 2', () => {
   const filteredRobots = [{
     id: 1,
     name: 'Leanne Graham',

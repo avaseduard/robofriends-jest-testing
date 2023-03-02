@@ -1,92 +1,90 @@
 import * as reducers from './reducers'
 import * as types from './constants'
 
+///////////
 const initialStateSearch = {
-  searchField: ''
+  searchField: '',
 }
+
 describe('searchRobots reducer', () => {
   it('should return the initial state', () => {
-    expect(reducers.searchRobots(undefined, {})).toEqual(
-      {
-        searchField: ""
-      }
-    )
+    expect(reducers.searchRobots(undefined, {})).toEqual({
+      searchField: '',
+    })
   })
 
   it('should handle CHANGE_SEARCHFIELD', () => {
     expect(
       reducers.searchRobots(initialStateSearch, {
         type: types.CHANGE_SEARCHFIELD,
-        payload: 'abc'
+        payload: 'abc',
       })
-    ).toEqual(
-      {
-        searchField: "abc"
-      }
-    )
+    ).toEqual({
+      searchField: 'abc',
+    })
   })
 })
 
+///////////
 const initialStateRobots = {
   robots: [],
-  isPending: true
+  isPending: false,
 }
+
 describe('requestRobots reducer', () => {
   it('should return the initial state', () => {
-    expect(reducers.requestRobots(undefined, {})).toEqual(
-      {
-        robots: [],
-        isPending: true
-      }
-    )
+    expect(reducers.requestRobots(undefined, {})).toEqual({
+      robots: [],
+      isPending: false,
+    })
   })
 
   it('should handle REQUEST_ROBOTS_PENDING action', () => {
     expect(
       reducers.requestRobots(initialStateRobots, {
         type: types.REQUEST_ROBOTS_PENDING,
-        payload: {isPending: true}
+        payload: { isPending: true },
       })
-    ).toEqual(
-      {
-        robots: [],
-        isPending: true
-      }
-    )
+    ).toEqual({
+      robots: [],
+      isPending: true,
+    })
   })
+  
   it('should handle REQUEST_ROBOTS_SUCCESS action', () => {
     expect(
       reducers.requestRobots(initialStateRobots, {
         type: types.REQUEST_ROBOTS_SUCCESS,
-        payload: [{
+        payload: [
+          {
             id: '123',
             name: 'test',
-            email: 'j@jmail.com'
-          }]
+            email: 'j@jmail.com',
+          },
+        ],
       })
-    ).toEqual(
-      {
-        robots: [{
+    ).toEqual({
+      robots: [
+        {
           id: '123',
           name: 'test',
-          email: 'j@jmail.com'
-        }],
-        isPending: false
-      }
-    )
+          email: 'j@jmail.com',
+        },
+      ],
+      isPending: false,
+    })
   })
+
   it('should handle REQUEST_ROBOTS_FAILED action', () => {
     expect(
       reducers.requestRobots(initialStateRobots, {
         type: types.REQUEST_ROBOTS_FAILED,
-        payload: 'NOOO'
+        payload: 'NOOO',
       })
-    ).toEqual(
-      {
-        error: 'NOOO',
-        robots: [],
-        isPending: true
-      }
-    )
+    ).toEqual({
+      error: 'NOOO',
+      robots: [],
+      isPending: false,
+    })
   })
 })
